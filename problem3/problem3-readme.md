@@ -1,11 +1,11 @@
-### Problem 3: Messy React
+## Problem 3: Messy React
 
 ---
 
 - Based on my knowledge in ReactJS, I found and marked 10 problems in the given code (**problem3.tsx**).
 - I'm going to list out all details below and come up with a refactor version (**refactorVer.tsx**).
 
-# PROBLEM 1: No need FormattedWalletBalance interface
+### PROBLEM 1: No need FormattedWalletBalance interface
 
 In this context, I see that interface FormattedWalletBalance is defined for formattedBalances[]. However, it is not necessary to create formattedBalances[] to only add 1 more 'formatted' field to pass to WalletRow.
 
@@ -13,7 +13,7 @@ In this context, I see that interface FormattedWalletBalance is defined for form
 
 ---
 
-# PROBLEM 2: balances returned from useWalletBalances() is an array - a reference data type
+### PROBLEM 2: balances returned from useWalletBalances() is an array - a reference data type
 
 Whenever other props/states change and the 'inner value' of balances[] doesn't change, the useMemo hook below always re-calculate.
 Because React uses Object.is as a comparator for hooks' dependencies array.
@@ -22,7 +22,7 @@ Because React uses Object.is as a comparator for hooks' dependencies array.
 
 ---
 
-# PROBLEM 3: blockchainPriorities
+### PROBLEM 3: blockchainPriorities
 
 From my POV, the priority of blockchain isn't stable. It may change according to market trend or user's customization. Therefore, hardcode seems to be a bad practice if we use switch/case to loop over all cases and return corresponding priority. Besides, we must to directly edit in source code whenever there are any changes in priority. It's terrible!
 
@@ -30,7 +30,7 @@ From my POV, the priority of blockchain isn't stable. It may change according to
 
 ---
 
-# PROBLEM 4: sortedBalances function only depends on balances[] and verbose code
+### PROBLEM 4: sortedBalances function only depends on balances[] and verbose code
 
 As we can see, sortedBalances doesn't reply on 'prices' and it shouldn't re-compute when prices changes. Besides, it should be re-written to be more concise and easier to understand
 
@@ -38,7 +38,7 @@ As we can see, sortedBalances doesn't reply on 'prices' and it shouldn't re-comp
 
 ---
 
-# PROBLEM 5: 'balance.blockchain' is undefined
+### PROBLEM 5: 'balance.blockchain' is undefined
 
 Defined interface WalletBalance doesn't exist field 'blockchain'. It maybe a mistake caused by 'blockchain' in getPriority parameter.
 
@@ -46,19 +46,19 @@ Defined interface WalletBalance doesn't exist field 'blockchain'. It maybe a mis
 
 ---
 
-# PROBLEM 6: Another word mistake
+### PROBLEM 6: Another word mistake
 
 --> Solution: lhsPriority --> balancePriority
 
 ---
 
-# PROBLEM 7: Unnecessary formattedBalances array
+### PROBLEM 7: Unnecessary formattedBalances array
 
 \*\Same as PROBLEM 1
 
 ---
 
-# PROBLEM 8: word mistake and optimization problem
+### PROBLEM 8: word mistake and optimization problem
 
 Discussed in PROBLEM 1 and 7: if we still need using formattedBalances[] for another purpose, there is a mistake that rows' result should base on formattedBalances result, not sortedBalances.
 Additionally, rows's result seem to be an expensive computation. Because the function loops over the array and return corresponding number of WalletRow with passed props processing inside.
@@ -69,7 +69,7 @@ Additionally, rows's result seem to be an expensive computation. Because the fun
 
 ---
 
-# PROBLEM 9: Using array index as a key is a bad practice
+### PROBLEM 9: Using array index as a key is a bad practice
 
 Using index as a key will lead to unexpected behaviours by React if there are some changes in array. Each child should provide a unique key like its own id which indexed in database. However, it seems to have no id field in this context.
 
@@ -77,7 +77,7 @@ Using index as a key will lead to unexpected behaviours by React if there are so
 
 ---
 
-# PROBLEM 10: pass directly balance.amount.toFixed()
+### PROBLEM 10: pass directly balance.amount.toFixed()
 
 This is a reason for PROBLEM 1 and 7, we can pass directly without having an intermediate array to do that.
 
