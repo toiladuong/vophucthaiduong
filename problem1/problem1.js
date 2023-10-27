@@ -7,12 +7,12 @@
 // sumTo(N) + sumTo(N) == (0 + N) + (1 + N-1) + ... + (N-1 + 1) + (N + 0) == sum (N+1) times of N
 // --> sumToN == N*(N+1)/2
 //In case the parameter is a negative integer, the absolute value sum of (-N, -N+1, ..., -1, 0) is still equal
-//Therefore, we add the indentifier "N/Math.abs(N)" to determine the returned sum is positive or negative according to N
+//Therefore, we add the identifier "N/Math.abs(N)" to determine the returned sum is positive or negative according to N
 var sum_to_n_a = function (n) {
   let m = Math.abs(n)
   if (m <= 1) return n
 
-  return ((n / m) * m * (m + 1)) / 2
+  return (n / m) * m * (m + 1) / 2
 }
 
 //THE SECOND WAY: recursion
