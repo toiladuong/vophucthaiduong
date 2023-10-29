@@ -1,4 +1,4 @@
-//The solutions are described in file problem1-readme.md
+//##PROBLEM1: There ways to sum to N
 
 //THE FIRST WAY:
 //Providing a parameter N (N: any integer), assume N is a positive integer  --> sumTo(N) == 0 + 1 + ... + (N-1) + N
