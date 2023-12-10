@@ -4,11 +4,11 @@
 
 Some features:
 
+- Using create-react-app + Material UI
 - Responsive design
-- Currency swap form
+- Currency trade form
 - Price chart (mock data)
 - Swap side
-- Create-react-app + MUI
 - ...
 
 I decide to separate problem2 to a different repository. Please check it out here:

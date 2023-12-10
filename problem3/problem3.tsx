@@ -18,13 +18,13 @@ interface Props extends BoxProps {}
 const WalletPage: React.FC<Props> = (props: Props) => {
   const { children, ...rest } = props;
 
-  // ## PROBLEM 2: balances is an array (reference type)
-  //--> Although the 'inner value' of balances doesn't change, the useMemo hook below always re-calculate.
+  // ## PROBLEM 2: In this context, it isn't clear what is useWalletBallaces under the hood. However, balances is an array (reference type)
+  //--> Although the 'inner value' of balances doesn't change, the useMemo hook below might re-calculate.
   //Because React uses Object.is to compare dependencies.
   const balances = useWalletBalances();
   const prices = usePrices();
 
-  // ## PROBLEM 3: In practice, the blockchainPriorities can be changed over time by BACKEND system or users.
+  // ## PROBLEM 3: In practice, the blockchainPriorities can be changed over time by BACKEND system or users if we provide customization abilities.
   // Therefore, the priority TABLE should be fetched from BACKEND or from User's priority customization.
   // Instead of using Switch/case to iterate overs cases one-by-one, create an TABLE (same with JSON format to be easily replaced by response from API in the future) to store the priotiry of blockchain.
   const getPriority = (blockchain: any): number => {
